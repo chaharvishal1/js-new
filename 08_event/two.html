@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Code</h1>
+    <button id="click">Stop</button>
+</body>
+<script>
+    const sayHello = () => {
+        console.log("My code here");
+    }
+
+    const changeCopy = () => {
+        document.querySelector('h1').innerText = "My code has been changed";
+    }
+
+    // sayHello();
+
+    const updateText = setTimeout(changeCopy, 2000);
+
+
+    document.getElementById('click').addEventListener('click', () => {
+        clearTimeout(updateText);
+        console.log("STOPPED");
+        
+    });
+
+</script>
+</html>
