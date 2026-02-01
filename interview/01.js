@@ -30,7 +30,8 @@ const generateStringHash = (str) => {
         return false
     }
 
-    let wordArr = str.split(" ").map( ele => ele.charAt(0).toUpperCase() + ele.slice(1) );
+    // let wordArr = str.split(" ").map( ele => ele.charAt(0).toUpperCase() + ele.slice(1) );
+    let wordArr = str.split(" ").map( ele => ele.replace(ele.charAt(0), ele.charAt(0).toUpperCase()) );
     // let hashTag = "#"
     // for (const ele of wordArr) {
     //     hashTag = hashTag + ele
@@ -44,3 +45,29 @@ const generateStringHash = (str) => {
 
 
 generateStringHash('Watch chair aur code youtube channel for hitghyuijn technical javascript');
+
+
+
+// #3 Write a function that takes an string of words and returns that word how much times in string.
+
+
+const wordCountInString = (str, ch) => {
+    if(str.trim().length === 0){
+        return false
+    }
+
+    let wordArr = str.toLowerCase();
+    let chLower = ch.toLowerCase();
+
+    wordArr = str.split("").reduce((acc, ele) => {
+        if(ele === chLower) {
+            acc ++
+        }
+        return acc;
+    }, 0)
+    console.log(wordArr);
+    
+}
+
+
+wordCountInString('javascript', 'a')
