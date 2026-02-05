@@ -71,3 +71,64 @@ const wordCountInString = (str, ch) => {
 
 
 wordCountInString('javascript', 'a')
+
+
+
+// #5 Write a function that sort an array of string in alphabetical order.
+
+
+const assendingSort = (arr) => {
+    if(arr.length === 0) {
+        return false
+    }
+    // arr.sort((a,b) => a-b);
+    arr.sort().reverse();
+    console.log(arr);
+}
+
+// assendingSort([1, 11, 31, 4, 5])
+
+assendingSort(["javascript", "python", "c++", "java", "ruby"])
+
+
+
+// #6 Write a function that show isPalindrome or not.
+
+
+const isPalindrome = (str)=> {
+    if(str.trim().length === 0) {
+        return false
+    }
+
+    str = str.toLowerCase();
+    let r_str = str.split("").reverse().join("");
+
+    if(str === r_str) {
+        console.log("It is a palindrome");
+    } else {
+        console.log("It is not a palindrome");
+    }
+}
+
+isPalindrome('racecar');
+
+
+
+// #7 Write a function that find max number in array without using Math.max() method.
+
+const findMaxNum = (arr) => {
+    if(arr.length === 0) {
+        return false
+    }
+
+    // let maxNum = arr[0];
+    // for (const ele of arr) {
+    //     if(ele > maxNum) {
+    //         maxNum = ele
+    //     }
+    // }
+    let maxNum = Math.max(...arr);
+    console.log(maxNum);
+}
+
+findMaxNum([1, 11, 31, 4, 5])
