@@ -132,3 +132,50 @@ const findMaxNum = (arr) => {
 }
 
 findMaxNum([1, 11, 31, 4, 5])
+
+
+// #8 Write a function that find factorial of a number.
+
+
+const getFactorial = (val) => {
+    if(val < 0) return false;
+
+    let fact = 1;
+    for (let i = 1; i <= val; i++) {
+        fact = fact * i
+    }
+    console.log(`Factorial of a ${val} is ${fact}`);
+}
+
+getFactorial(4)
+
+
+
+// #9 Write a function that find the average of all number in array.
+
+
+const getAverage = (arr) => {
+    if(arr.length === 0) return false;
+
+    let sum = arr.reduce((acc, elem) => acc + elem, 2);
+    let avg = sum / arr.length;
+    console.log(`Average of ${arr} is ${avg}`);
+
+}
+
+getAverage([1, 2, 3, 4, 5])
+
+
+// #10 Write a function that compare two arrays.
+
+
+const compareResult = (arr1, arr2) => {
+    if(arr1.length === 0 || arr2.length === 0 || (arr1.length !== arr2.length)) return false;
+
+    const result = arr1.every((ele, ind) => ele === arr2[ind]);
+    console.log(`Arrays are equal: ${result}`);
+}
+
+
+
+compareResult([1,2,3,4], [4,3,2,1])
