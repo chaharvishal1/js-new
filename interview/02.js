@@ -145,3 +145,41 @@ const isUpperCase = (char) => {
 }
 
 isUpperCase('A')
+
+
+// #19 Write a function to get given string start from sub string or not
+
+
+const getStatusString = (str, subStr) => {
+    if(str.length === 0 || subStr.length === 0) return false
+
+    // const result = str.split(" ").map((itm, index) => {
+    //     if(itm.toLowerCase() === subStr.toLowerCase()){
+    //         return true
+    //     }
+    //     return false
+    // })
+    const result = str.toLowerCase().startsWith(subStr.toLowerCase())
+    console.log(`Status of give string is: ${result}`);
+    
+}
+
+getStatusString("Hello world", "hello")
+
+
+// #20 Write a function to revert string without using javascript predefined method
+
+const getReverseString = (str) => {
+    if(str.length === 0) return false
+
+    let newStr = ''
+
+    const result = str.toLowerCase();
+    for (let i = result.length-1; i >= 0 ; i--) {
+        newStr = newStr + result[i]
+    }
+    console.log(`reverse string is: ${newStr}`);
+    
+}
+
+getReverseString("vishal")
