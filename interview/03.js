@@ -58,3 +58,35 @@ const recursiveFactorial = (val)=> {
 }
 
 console.log(recursiveFactorial(5));
+
+
+// #24 Write a program to get fabonacci series of n number
+
+
+const getFabonacci = (val)=> {
+    if(val <= 1){
+        return val
+    }
+    else {
+        return getFabonacci(val-1) + getFabonacci(val-2)
+    }
+}
+
+console.log(getFabonacci(8));
+
+
+// #25 Write a function that repeat string as per giver argument
+
+
+const repeatString =(str, nm) => {
+    if(nm === 0) return false
+    let result='';
+    for (let i = 0; i <= nm; i++) {
+       result = result + str
+    }
+    console.log(`Repeated string is : ${result}`);
+    
+}
+
+repeatString("abc", 4)
+
