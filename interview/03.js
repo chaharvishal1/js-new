@@ -90,3 +90,46 @@ const repeatString =(str, nm) => {
 
 repeatString("abc", 4)
 
+
+// #26 Write a function for truncate String as per giver argument length
+
+
+const truncateString = (str, count) => {
+    if(str.length > count) {
+        const result = str.slice(0, count)
+        console.log(`Truncate string is: ${result}`);
+        
+    }
+}
+
+truncateString("Hellow worldoufnh shjiydldn", 8)
+
+
+// #27 Write a program that show consecutive number between argument range
+
+
+const getConsecutiveNumber = (a, b)=> {
+    if(a > b) return false
+    let result=[]
+    for (let i = a; i <= b; i++) {
+        result.push(i)
+    }
+    console.log('Consecutive numbers are:', result);
+    
+}
+
+getConsecutiveNumber(0, 6)
+
+
+// #28 Write a program that show consecutive number between argument range with recursion
+
+const getConsecutiveNumberRecursion = (a, b, result = [])=> {
+    if(a <= b) {
+        result.push(a)
+        return getConsecutiveNumberRecursion(a+1, b, result)
+    }
+    // return result
+    console.log('Consecutive numbers are:', result);
+    
+}
+getConsecutiveNumberRecursion(4, 23)
