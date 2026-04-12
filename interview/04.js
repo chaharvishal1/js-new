@@ -83,10 +83,44 @@ getObjectEmpty({name: "John", age: 30})
 
 // #36 WAP to convert object to array and vice-versa
 
+const objectToArray = (val) => {
+   const result =  Object.entries(val)
+   console.log('Object to Array:', result.flat());
+}
+
+objectToArray({"name": "abc", "class": "two", "section": "C"})
+
+const arrayToObject = (val) => {
+    const result = Object.fromEntries(val)
+    console.log('Array to Object:', result);
+}
+
+arrayToObject([['name', 'abc'], ['class', 'two'], ['section', 'C'] ])
+
+
+
 // #37 WAP to get difference between two dates
 
-// #38 WAP to get the age of persone from date of birth
+const getDifferent = (d1, d2) => {
 
+    const parseDate = (dateStr) => {
+        const [day, month, year] = dateStr.split('-').map(Number)
+        return new Date(year, month - 1, day)
+    }
+    const date1 = parseDate(d1)
+    const date2 = parseDate(d2)
+
+    const diff = Math.abs(date1 - date2)
+    const result  = diff/(24*60*60*1000)
+
+    console.log('Difference is', result);
+}
+
+getDifferent('11-01-2026', '11-04-2026')
+
+
+
+// #38 WAP to get the age of persone from date of birth
 
 const getAge = (dob) => {
     const today = new Date()
@@ -105,3 +139,6 @@ const getAge = (dob) => {
 }
 
 getAge("1990-07-01")
+
+
+// #40 WAP to generate barchart using array of numbers
