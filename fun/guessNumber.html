@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Guess the Number</title>
+    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button {
+            margin-top: 30px;
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #fff;
+            padding: 10px;
+            width: 50px;
+            text-align: center;
+        }
+        input[type="number"] {
+            padding: 5px;
+            font-size: 16px;
+            width: 100px;
+            text-align: center;
+        }
+        .label-score {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <h2>Guess the Number</h2>
+            <p class="message">Start Guessing...</p>
+            <div class="result">?</div>
+            <input type="number" id="guessInput" placeholder="guess">
+            <button id="guessButton">Guess</button>
+            <div class="label-score">Score: <span id="score">20</span></div>
+            <div class="label-score">High Score: <span id="highScore">0</span></div>
+        </div>
+    </body>
+    <script>
+        const guessNumber = Math.trunc(Math.random() * 20) + 1;
+        const guessButton = document.getElementById('guessButton');
+        const scoreElement = document.getElementById('score');
+        const highScoreElement = document.getElementById('highScore');
+
+        guessButton.addEventListener('click', function() {
+            const userGuess = Number(document.getElementById('guessInput').value);
+            const resultElement = document.querySelector('.result');
+            const messageElement = document.querySelector('.message');
+            let score = Number(scoreElement.textContent);
+            let highScore = Number(highScoreElement.textContent);
+
+            if (!userGuess) {
+                messageElement.textContent = '⛔️ No number!';
+            } else if (userGuess === guessNumber) {
+                messageElement.textContent = '🎉 Correct Number!';
+                resultElement.textContent = guessNumber;
+                document.body.style.backgroundColor = '#60b347';
+                if (score > highScore) {
+                    highScore = score;
+                    document.getElementById('highScore').textContent = highScore;
+                }
+            } else if (userGuess !== guessNumber) {
+                if (score > 1) {
+                    messageElement.textContent = userGuess > guessNumber ? '📈 Too high!' : '📉 Too low!';
+                    score--;
+                    document.getElementById('score').textContent = score;
+                } else {
+                    messageElement.textContent = '💥 You lost the game!';
+                    document.getElementById('score').textContent = 0;
+                }
+            }
+        });
+
+    </script>
+</html>

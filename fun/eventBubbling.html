@@ -1,0 +1,74 @@
+<HTML>
+    <head>
+        <title>Event Bubbling</title>
+    </head>
+    <style>
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .parent-div {
+            width: 300px;
+            height: 300px;
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .child-div {
+            width: 150px;
+            height: 150px;
+            background-color: lightgreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <body>
+
+        <!-- // Event Bubbling is a concept in JavaScript where an event starts from the deepest element and then bubbles up to its ancestors. In this example, we have a parent div and a child div. When the child div is clicked, it will trigger its own click event and also bubble up to the parent div's click event unless we stop the propagation. -->
+        <!-- <div class="container">
+            <div class="parent-div">
+                Parent Portion
+                <div class="child-div">Child portion</div>
+            </div>
+        </div> -->
+
+        <!-- // Event Delegation is a technique in JavaScript where we take advantage of event bubbling to handle events at a higher level in the DOM rather than attaching event listeners to individual elements. In this example, we have a parent div and a child div. Instead of adding click event listeners to both the parent and child divs, we can add a single click event listener to the parent div and use event delegation to determine which child element was clicked. -->
+        <div class="container">
+            <ul class="parent-div">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+        </div>
+
+    </body>
+    <!-- <script>
+        const parentDiv = document.querySelector('.parent-div');
+        const childDiv = document.querySelector('.child-div');
+
+        parentDiv.addEventListener('click', () => {
+            console.log('Parent Div Clicked!');
+        });
+
+        childDiv.addEventListener('click', (event) => {
+            console.log('Child Div Clicked!');
+            event.stopPropagation(); // Prevents the event from bubbling up to the parent
+        });
+    </script> -->
+
+    <script>
+        const parentDiv = document.querySelector('.parent-div');
+
+        parentDiv.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                console.log(`${event.target.textContent} Clicked!`);
+            }
+        });
+    </script>
+</HTML>
