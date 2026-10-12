@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Project</title>
+</head>
+<body>
+
+    <h1>Get Fetch API</h1>
+    <button id="fetchButton">Fetch Data</button>
+    <div id="dataContainer"></div>
+
+    <br><br>
+
+    <h1>Post Fetch API</h1>
+    <form id="postForm">
+        <input type="text" id="name" placeholder="Enter name" required>
+        <input type="email" id="email" placeholder="Enter email" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="postResponse"></div>
+
+</body>
+<script>
+    // Fetch API GET request
+    document.getElementById('fetchButton').addEventListener('click', () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('dataContainer').innerHTML = `<p>Title: ${data.title}</p><p>Body: ${data.body}</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    // Fetch API POST request
+    document.getElementById('postForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        const postData = {
+            name: name,
+            email: email
+        };
+
+        fetch('https://jsonplaceholder.typicode.com/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('postResponse').innerHTML = `<p>User created successfully!</p><p>ID: ${data.id}</p>`;
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+</html>

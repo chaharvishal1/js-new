@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Debounce Example</h1>
+        <input type="text" id="debounceInput" placeholder="Type something...">
+        <p id="debounceOutput"></p>
+    </div>
+
+</body>
+
+<script>
+    const fetchData = (event) => {
+        console.log('Fetching data for:', event.target.value);
+    }
+
+    // Debounce function
+    function debounce(func, delay) {
+        let timeoutId;
+        return function(...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
+    }
+
+    const debounceFile = debounce(fetchData, 1000);
+    document.querySelector('#debounceInput').addEventListener('input', debounceFile);
+</script>
+
+</html>

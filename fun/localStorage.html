@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // Store data in localStorage
+        // localStorage.setItem('name', 'John Doe');
+        // localStorage.setItem('age', '30');
+
+        // const name = localStorage.getItem('name');
+        // const age = localStorage.getItem('age');
+
+        // document.write(`Name: ${name}<br>`);
+        // document.write(`Age: ${age}`);
+
+
+        //Store date in sessionStorage
+        // sessionStorage.setItem('sessionName', 'Jane Doe');
+        // sessionStorage.setItem('sessionAge', '25');
+
+        // const name = sessionStorage.getItem('sessionName');
+        // const age = sessionStorage.getItem('sessionAge');
+
+        // document.write(`Name: ${name}<br>`);
+        // document.write(`Age: ${age}`);
+
+        // Store data in cookies
+        document.cookie = "cookieName=Josef; expires=Fri, 31 Dec 2026 23:59:59 GMT; path=/";
+        document.cookie = "cookieAge=30; expires=Fri, 31 Dec 2026 23:59:59 GMT; path=/";
+
+        const cookies = document.cookie.split(';');
+        cookies.forEach(cookie => {
+            const [name, value] = cookie.split('=');
+            document.write(`Cookie Name: ${name.trim()}<br>`);
+            document.write(`Cookie Value: ${value.trim()}<br>`);
+        });
+
+
+    </script>
+
+</body>
+</html>

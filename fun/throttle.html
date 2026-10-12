@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Throttle Example</h1>
+        <input type="text" id="throttleInput" placeholder="Type something...">
+        <p id="throttleOutput"></p>
+    </div>
+
+</body>
+
+<script>
+    const fetchData = (event) => {
+        console.log('Fetching data for:', event.target.value);
+    }
+
+    // Throttle function
+    function throttle(func, delay) {
+        let lastTime = 0;
+        return function(...args) {
+            const now = Date.now();
+            if (now - lastTime >= delay) {
+                func.apply(this, args);
+                lastTime = now;
+            }
+        };
+    }
+
+    const throttleFile = throttle(fetchData, 2000);
+    document.querySelector('#throttleInput').addEventListener('input', throttleFile);
+</script>
+
+</html>

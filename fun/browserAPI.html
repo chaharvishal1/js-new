@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser API</title>
+</head>
+<body>
+
+    <h1>Geolocation API</h1>
+    <button id="getLocationButton">Get Location</button>
+    <div id="locationOutput"></div>
+
+    <br><br>
+
+    <h1>Clipboard API</h1>
+    <textarea id="clipboardInput" placeholder="Type something to copy..."></textarea><br>
+    <button id="copyButton">Copy Text</button>
+    <div id="clipboardOutput"></div>
+    <button id="pasteButton">Paste Text</button>
+    <div id="pasteOutput"></div>
+
+    <br><br>
+
+    <h1>Notification API</h1>
+    <button id="notifyButton">Show Notification</button>
+
+</body>
+
+<script>
+    document.getElementById('getLocationButton').addEventListener('click', () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    document.getElementById('locationOutput').innerHTML = `<p>Latitude: ${latitude}</p><p>Longitude: ${longitude}</p>`;
+                },
+                (error) => {
+                    console.error('Error getting location:', error);
+                    document.getElementById('locationOutput').innerHTML = `<p>Error getting location: ${error.message}</p>`;
+                }
+            );
+        } else {
+            document.getElementById('locationOutput').innerHTML = '<p>Geolocation is not supported by this browser.</p>';
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('copyButton').addEventListener('click', () => {
+        const textToCopy = document.getElementById('clipboardInput').value;
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                document.getElementById('clipboardOutput').innerHTML = '<p>Text copied to clipboard!</p>';
+            })
+            .catch((error) => {
+                console.error('Error copying text:', error);
+                document.getElementById('clipboardOutput').innerHTML = `<p>Error copying text: ${error.message}</p>`;
+            });
+    });
+
+    document.getElementById('pasteButton').addEventListener('click', () => {
+        navigator.clipboard.readText()
+            .then((text) => {
+                document.getElementById('pasteOutput').innerHTML = `<p>Pasted text: ${text}</p>`;
+            })
+            .catch((error) => {
+                console.error('Error pasting text:', error);
+                document.getElementById('pasteOutput').innerHTML = `<p>Error pasting text: ${error.message}</p>`;
+            });
+    });
+</script>
+
+<script>
+    document.getElementById('notifyButton').addEventListener('click', () => {
+        if (Notification.permission === 'granted') {
+            new Notification('Hello! This is a notification.');
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                    new Notification('Hello! This is a notification.');
+                }
+            });
+        }
+    });
+</script>
+
+</html>
